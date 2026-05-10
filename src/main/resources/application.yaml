@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: lst-ai
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+          model: deepseek-r1:7b
+    openai:
+      base-url: https://dashscope.aliyuncs.com/compatible-mode
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: qwen-max-latest
+      embedding:
+        options:
+          model: text-embedding-v3
+          dimensions: 1024
+    vecorstore:
+      redis:
+        index: spring_ai_index
+        initialize-schema: true
+        prefix: "doc"
+  data:
+    redis:
+      host: 192.168.150.101
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/console_2?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: 1450
+logging:
+    level:
+      org.springframework.ai.chat.client.advisor: debug
+      com.llsstt.ai: debug
